@@ -1,0 +1,19 @@
+.listElement{
+    border-bottom: 2px solid #25272D;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.listElement div h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.price{
+    font-size: 20px;
+    font-weight: bolder;
+    color: #1E565C;
+}

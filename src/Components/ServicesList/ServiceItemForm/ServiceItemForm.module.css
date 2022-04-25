@@ -1,0 +1,31 @@
+.formLabel {
+    font-weight: bold;
+    font-size: 20px;
+    color: #1E565C;
+    margin-right: 5px;
+}
+.formInput {
+    width: auto;
+}
+.formButton {
+    cursor: pointer;
+    font: inherit;
+    border: none;
+    background-color: #39A2AE;
+    color: white;
+    padding: 0.75rem 3rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 25px;
+    font-weight: bold;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.amountContainer{
+    height: 50px;
+}
