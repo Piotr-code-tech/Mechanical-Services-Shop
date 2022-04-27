@@ -16,7 +16,7 @@ const App = () => {
     }
 
     return (
-        <React.Fragment>
+        <>
             <CartProvider>
                 {orderWindowIsActive && <OrderCart onClick={closeOrderWindowHandler}/>}
                 <Header openOrderWindow={openOrderWindowHandler}/>
@@ -24,7 +24,7 @@ const App = () => {
                     <ServisecList/>
                 </main>
             </CartProvider>
-        </React.Fragment>
+        </>
 
   );
 }

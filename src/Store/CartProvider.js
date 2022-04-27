@@ -3,7 +3,7 @@ import {useReducer} from "react";
 import {saveData,getData} from "../LocalStorage/LocalStorage-operations";
 
 const calculateTotalAmount = () => {
-    const arr =getData("cartItems");
+    const arr =getData("cartItems")??[];
     let totalAmount = 0;
     arr.forEach((element)=>{
         totalAmount = totalAmount + (element.price * element.amount);
@@ -56,6 +56,35 @@ const cartReducer = (state, action) => {
             totalAmount: updatedTotalAmount,
         };
     }
+    if(action.type === "DELETE_ONE_ITEM"){
+        const existingCartItemIndex = state.items.findIndex(element=> element.name === action.item.name);
+        const existingCartItem = state.items[existingCartItemIndex];
+        let updatedItems;
+        if(existingCartItem.amount > 1){
+            const updatedItem = {
+                ...existingCartItem,
+                amount: existingCartItem.amount - 1
+            };
+            updatedItems=[
+                ...state.items
+            ];
+            updatedItems[existingCartItemIndex] = updatedItem;
+            saveData(updatedItems,"cartItems")
+        } else {
+            const downloadedStorageList = getData("cartItems");
+            const updatedStorageList = downloadedStorageList.filter(
+                element => {
+                    return element.name !== action.item.name;
+                }
+            );
+            saveData(updatedStorageList,"cartItems");
+        }
+        const updatedTotalAmount =  calculateTotalAmount(getData("cartItems"));
+        return{
+            items: getData("cartItems"),
+            totalAmount: updatedTotalAmount,
+        };
+    };
     return defaultCartState;
 };
 
@@ -69,11 +98,16 @@ const CartProvider = (props) => {
         dispatchCartAction({type: "DELETE_ITEM", id: id});
     };
 
+    const removeOneItemHandler = (item) => {
+        dispatchCartAction({type: "DELETE_ONE_ITEM", item: item});
+    };
+
     const  cartContext = {
         items: cartState.items,
         totalAmount : cartState.totalAmount,
         addItem: addItemToCartHandler,
-        removeItem: removeItemFromCartHandler
+        removeItem: removeItemFromCartHandler,
+        removeOneItem: removeOneItemHandler
     };
 
     return(

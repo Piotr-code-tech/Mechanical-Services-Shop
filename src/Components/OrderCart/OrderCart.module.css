@@ -99,6 +99,12 @@
     color: white;
 }
 
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
 .deleteButton{
     width: 50px;
     height: 50px;
