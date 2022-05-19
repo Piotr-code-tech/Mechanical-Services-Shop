@@ -6,6 +6,7 @@ import DeleteIcon from "../UI/DeleteIcon/DeleteIcon";
 import cartContext from "../../Store/cart-context";
 import {AddButton} from "./addButton";
 import {DeleteButton} from "./deleteButton";
+
 const OrderCart = (props) => {
     const [updateStorageState, setUpdateStorageState] = useState(false);
     const cartCtx = useContext(cartContext);
@@ -52,7 +53,7 @@ const OrderCart = (props) => {
                 </div>
                 <div className={Styles.actions}>
                     <button className={Styles.buttonAlt} onClick={props.onClick}>Close</button>
-                    <button className={Styles.button}>Order</button>
+                    <button className={Styles.button} onClick={props.onClickOrder}>Next</button>
                 </div>
             </Modal>
         </React.Fragment>

@@ -1,0 +1,43 @@
+.orderHead {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+.orderForm {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.orderForm div{
+    margin-bottom: 15px;
+}
+
+.orderForm div label{
+    font-weight: bold;
+}
+
+.actions {
+    text-align: right;
+}
+
+.actions button {
+    color: white;
+    font-weight: bold;
+    font: inherit;
+    cursor: pointer;
+    background-color: #39A2AE;
+    border: 1px solid #39A2AE;
+    padding: 0.5rem 2rem;
+    border-radius: 25px;
+    margin-left: 1rem;
+}
+
+.actions button:hover,
+.actions button:active {
+    background-color: #163C3C;
+    border-color: #163C3C;
+    color: white;
+}
