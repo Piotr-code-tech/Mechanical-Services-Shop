@@ -7,7 +7,14 @@ export const NameInput = (props) => {
     return(
         <div>
             <label htmlFor={"name"}>Name : </label>
-            <input type={"text"} id={"name"} onChange={nameInputHandler}/>
+            <input
+                type={"text"}
+                id={"name"}
+                onChange={nameInputHandler}
+                onBlur={props.onBlur}
+                value={props.nameValue}
+            />
+            {props.hasError && <p>Invalid Name</p>}
         </div>
     );
 }

@@ -17,15 +17,15 @@ const App = () => {
     }
 
     const openFormWindow = () =>{
-        setOrderWindowIsActive(false);
+
         setFormWindowIsActive(true);
     }
 
     return (
         <>
             <CartProvider>
-                {formWindowIsActive && <InputFormOrder></InputFormOrder>}
-                {orderWindowIsActive && <OrderCart onClick={closeOrderWindowHandler} onClickOrder={openFormWindow}/>}
+                {formWindowIsActive && <InputFormOrder closeFormWindow={setFormWindowIsActive}></InputFormOrder>}
+                {orderWindowIsActive && !formWindowIsActive && <OrderCart onClick={closeOrderWindowHandler} onClickOrder={openFormWindow}/>}
                 <Header openOrderWindow={openOrderWindowHandler}/>
                 <main>
                     <ServisecList/>

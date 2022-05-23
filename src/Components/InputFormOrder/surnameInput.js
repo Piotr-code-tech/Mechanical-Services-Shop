@@ -7,7 +7,14 @@ export const SurnameInput = (props) => {
     return(
         <div>
             <label htmlFor={"surname"}>Surname : </label>
-            <input type={"text"} id={"surname"} onChange={surnameInputHandler}/>
+            <input
+                value={props.surnameValue}
+                type={"text"}
+                id={"surname"}
+                onChange={surnameInputHandler}
+                onBlur={props.onBlur}
+            />
+            {props.hasError && <p>Invalid Surname</p>}
         </div>
     );
 }

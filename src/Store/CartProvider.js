@@ -85,6 +85,9 @@ const cartReducer = (state, action) => {
             totalAmount: updatedTotalAmount,
         };
     };
+    if(action.type === "DELETE_All_ITEM"){
+        saveData([],"cartItems");
+    }
     return defaultCartState;
 };
 
@@ -102,12 +105,17 @@ const CartProvider = (props) => {
         dispatchCartAction({type: "DELETE_ONE_ITEM", item: item});
     };
 
+    const removeAllItemHandler = () => {
+        dispatchCartAction({type: "DELETE_All_ITEM"})
+    }
+
     const  cartContext = {
         items: cartState.items,
         totalAmount : cartState.totalAmount,
         addItem: addItemToCartHandler,
         removeItem: removeItemFromCartHandler,
-        removeOneItem: removeOneItemHandler
+        removeOneItem: removeOneItemHandler,
+        removeAllItem : removeAllItemHandler
     };
 
     return(

@@ -6,7 +6,14 @@ export const DateInput = (props) => {
     return(
         <div>
             <label htmlFor={"date"}>Service date :</label>
-            <input type={"date"} id={"date"} onChange={dateInputHandler}/>
+            <input
+                value={props.dateValue}
+                type={"date"}
+                id={"date"}
+                onChange={dateInputHandler}
+                onBlur={props.onBlur}
+            />
+            {props.hasError && <p>Invalid date</p>}
         </div>
     );
 }

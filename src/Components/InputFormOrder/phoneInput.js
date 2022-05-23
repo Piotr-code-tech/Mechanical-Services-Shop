@@ -6,7 +6,14 @@ export const PhoneInput = (props) => {
     return(
         <div>
             <label htmlFor={"phone"}>Phone Number : </label>
-            <input type={"tel"} id={"phone"} onChange={phoneInputHandler}/>
+            <input
+                value={props.phoneValue}
+                type={"tel"}
+                id={"phone"}
+                onChange={phoneInputHandler}
+                onBlur={props.onBlur}
+            />
+            {props.hasError && <p>Invalid phone</p>}
         </div>
     );
 }
