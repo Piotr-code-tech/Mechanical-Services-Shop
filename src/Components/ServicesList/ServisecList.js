@@ -1,11 +1,11 @@
 import React from 'react';
 import ServicesIntroduction from "./ServiceIntroduction/ServicesIntroduction";
 import AvailableServices from "./AvailableServices/AvailableServices";
-const ServicesList = () => {
+const ServicesList = (props) => {
     return(
         <React.Fragment>
             <ServicesIntroduction/>
-            <AvailableServices/>
+            <AvailableServices services={props.services} isLoading={props.isLoading}/>
         </React.Fragment>
     );
 }

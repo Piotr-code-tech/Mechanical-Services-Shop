@@ -8,6 +8,7 @@ import {ReturnButton} from "./returnButton";
 import Styles from "./OrderForm.module.css";
 import cartContext from "../../Store/cart-context";
 import {useInput} from "../../hooks/useInput";
+import {useHTTP} from "../../hooks/useHTTP";
 
 export const OrderForm = (props) => {
     const ctx = useContext(cartContext);
@@ -42,15 +43,31 @@ export const OrderForm = (props) => {
         inputBlurHandler: dateBlurHandler
     } = useInput(value => value.match(dateRegex));
 
+    const responseConfig = {
+        url: 'https://mechanical-services-28b54-default-rtdb.europe-west1.firebasedatabase.app//Orders.json',
+        method: 'POST',
+        body: JSON.stringify({
+            user: {
+                name: userName,
+                surname: userSurname,
+                phone: userPhone,
+                date: userDate
+            },
+            order: ctx.items
+        })
+    };
+    const {sendRequest : fetchServices} = useHTTP(responseConfig,[]);
+
     const orderButtonHandler = (event) => {
+        fetchServices();
         props.closeFormWindow(false);
         resetNameInput();
         ctx.removeAllItem();
     }
 
-    const dataAreValid = dateInputHasError||phoneInputHasError||surnameInputHasError||nameInputHasError
-        ? false
-        : true;
+    const validationCondition = dateInputHasError || phoneInputHasError || surnameInputHasError || nameInputHasError;
+    let dataAreValid = true;
+    validationCondition === false ? dataAreValid = true :  dataAreValid = false;
 
     return(
         <>
